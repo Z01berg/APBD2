@@ -2,8 +2,6 @@
 
 class Container
 {
-    public static List<Container> DB_Container = new List<Container>();
-
     private int _weightLoad; //in kg
     private int _height; //in cm
     private int _weightShell; //in kg
@@ -20,7 +18,7 @@ class Container
         this._depth = depth;
         this._serialNumber = serialNumber;
         this._weightMax = weightMax;
-        DB_Container.Add(this);
+        Program.DB_Container.Add(this);
     }
 
     public static string CreateSerialNumber(char kind_C, string id)
@@ -58,7 +56,7 @@ class Container
 
     public static bool CheckFalseID(string id)
     {
-        foreach (var con in DB_Container)
+        foreach (var con in Program.DB_Container)
         {
             string check = con._serialNumber.Substring(5);
             if (check == id)
@@ -86,7 +84,7 @@ class Container
     /* Lodaout */
     public static void ClearLoad(string id)
     {
-        foreach (var con in DB_Container)
+        foreach (var con in Program.DB_Container)
         {
             if (con._serialNumber.Equals(id))
             {
@@ -97,7 +95,7 @@ class Container
 
     public static void LoadLoad(string id)
     {
-        foreach (var con in DB_Container)
+        foreach (var con in Program.DB_Container)
         {
             if (con._serialNumber.Equals(id))
             {
@@ -108,6 +106,34 @@ class Container
                 }
             }
         }
+    }
+    
+    /*Show Table*/
+    public static string DrawContainer()
+    {
+        string a = "";
+        if (Program.DB_Container.Count == 0)
+        {
+            a += $"╚═════════════╩════════════╩══════════════╩═══════╩═══════════════╩════════╝\n\n";
+        }
+        else
+        {
+            foreach (var container in Program.DB_Container)
+            {
+                a += $"║ {container._serialNumber} ║   {container._weightMax}  ║   {container._weightShell}  ║ {container._depth} ║ {container._height} ║ {container._weightLoad} ║\n";
+            
+                if (Program.DB_Container.IndexOf(container) == Program.DB_Container.Count - 1)
+                {
+                    a += $"╚═════════════╩════════════╩══════════════╩═══════╩═══════════════╩════════╝\n\n";
+                }
+                else
+                {
+                    a += $"╠═════════════╬════════════╬══════════════╬═══════╬═══════════════╬════════╣\n";
+                }
+            }
+        }
+
+        return a;
     }
 }
 
