@@ -8,26 +8,33 @@ abstract public class Container
     public int _height { get; set; } //in cm
     public int _weightShell { get; set; } //in kg
     public int _depth { get; set; } //in cm
-    public string _serialNumber = ReturnID();
+    public string _serialNumber { get; set; }
     public int _weightMax { get; set; } //in kg
     public bool _isHazardous { get; set; } //check if liquid hazard
     public double _pressure { get; set; } 
+    public string _productType { get; set; }
+    public double _temperature { get; set; }
 
 
-    public Container(int weightLoad, int height, int weightShell, int depth, string serialNumber, int weightMax)
+    public Container(int weightLoad, int height, int weightShell, int depth, string serialNumber, int weightMax,
+        bool? isHazardous = null, double? pressure = null, string? productType = null, double? temperature = null)
     {
         this._weightLoad = weightLoad;
         this._height = height;
         this._weightShell = weightShell;
         this._depth = depth;
-        this._serialNumber = serialNumber;
+        this._serialNumber = CreateSerialNumber();
         this._weightMax = weightMax;
+        this._isHazardous = (bool)isHazardous;
+        this._pressure = (double)pressure;
+        this._productType = productType;
+        this._temperature = (double)temperature;
         DB_Container.Add(this);
     }
 
-    public static string CreateSerialNumber(char kind_C, string id)
+    public virtual string CreateSerialNumber()
     {
-        string serialNumber = $"KON-{kind_C}-{id}";
+        string serialNumber = $"KON--{ReturnID()}";
         return serialNumber;
     }
 
@@ -124,7 +131,7 @@ abstract public class Container
         {
             foreach (var container in DB_Container)
             {
-                a += $"║ {container._serialNumber} ║   {container._weightMax}  ║   {container._weightShell}  ║ {container._depth} ║ {container._height} ║ {container._weightLoad} ║\n";
+                a += $"║    {container._weightLoad}     ║    {container._weightMax}    ║      {container._weightShell}     ║   {container._depth}  ║   {container._serialNumber} ║   {container._height}   ║\n";
             
                 if (DB_Container.IndexOf(container) == DB_Container.Count - 1)
                 {

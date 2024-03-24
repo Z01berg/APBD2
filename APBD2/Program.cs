@@ -4,9 +4,53 @@ class Program
 {
     public static void Main(string[] args)
     {
-        Ship.CreateExmple_Ship();
-        Console.WriteLine(_showListShip());
-        Console.WriteLine(_showListContainer());
+        // Stworzenie kontenera danego typu
+        Container liquid = new Liquid(1250, 15, 150, 10, "5", 1500, true);
+        Container gaz = new Gaz(5, 5, 5, 5, "5", 1500, 100);
+        Container cooler = new Cooler(5, 5, 5, 5, "5", 1200);
+        
+        Console.Write(_showListContainer());
+        
+        //Załadowanie ładunku do danego kontenera
+        Console.WriteLine(liquid._serialNumber);
+        liquid.LoadLoad(liquid._serialNumber);
+        gaz.LoadLoad(gaz._serialNumber);
+        cooler.LoadLoad(cooler._serialNumber);
+        
+        //Załadowanie kontenera na statek
+        
+        
+        //Załadowanie listy kontenerów na statek
+        
+        
+        //Usunięcie kontenera ze statku
+        
+        
+        //Rozładowanie kontenera
+        
+        
+        //Zastąpienie kontenera na statku o danym numerze innym kontenerem
+        
+        
+        //Możliwość przeniesienie kontenera między dwoma statkami
+        
+        
+        //Wypisanie informacji o danym kontenerze
+        
+        
+        //Wypisanie informacji o danym statku i jego ładunku
+        
+        
+        //liquid.LoadLoad();
+        // bool on = true;
+        // while (on)
+        // {
+        //     Terminal();
+        // }
+        //
+        // Ship.CreateExmple_Ship();
+        // Console.WriteLine(_showListShip());
+        // Console.WriteLine(_showListContainer());
     }
 
     /*Default start of Terminal*/
@@ -36,6 +80,11 @@ class Program
     
     private static int _shipCount { get { return Ship.DB_Ship.Count; } }
 
-    
+    private static void Terminal()
+    {
+        Console.WriteLine(_showListShip());
+        Console.WriteLine(_showListContainer());
+        
+    }
 }
 

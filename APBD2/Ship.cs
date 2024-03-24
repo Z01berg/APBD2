@@ -4,6 +4,7 @@ public class Ship
 {
     public static List<Ship> DB_Ship = new List<Ship>();
     
+    private List<Container> containers;
     private string _name;
     private int _speed;
     private int _maxContainerNum;
@@ -12,6 +13,7 @@ public class Ship
 
     public Ship(string name, int speed, int maxContainerNum, int maxWeight)
     {
+        this.containers = new List<Container>();
         this._name = name;
         this._speed = speed;
         this._maxContainerNum = maxContainerNum;
@@ -79,5 +81,17 @@ public class Ship
         }
 
         return a;
+    }
+    
+    public void AddContainer(Container container)
+    {
+        if (containers.Count < _maxContainerNum)// TODO add mass check 
+        {
+            containers.Add(container);
+        }
+        else
+        {
+            Console.WriteLine("Cannot add more containers. Max capacity reached.");
+        }
     }
 }

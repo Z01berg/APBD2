@@ -2,9 +2,9 @@
 
 class Liquid : Container, IHazardNotifier
 {
-    public Liquid(int weightLoad, int height, int weightShell, int depth, string serialNumber, int weightMax) : base(weightLoad, height, weightShell, depth, serialNumber, weightMax)
+    public Liquid(int weightLoad, int height, int weightShell, int depth, string serialNumber, int weightMax,
+        bool? isHazardous) : base(weightLoad, height, weightShell, depth, serialNumber, weightMax, isHazardous)
     {
-        
     }
     
     public void NotifyDangerousSituation(string containerNumber)
@@ -12,6 +12,11 @@ class Liquid : Container, IHazardNotifier
         Console.WriteLine($"Notyfikacja: Kontener o numerze {containerNumber} znajduje się w niebezpiecznej sytuacji!");
     }
 
+    public override string CreateSerialNumber()
+    {
+        string serialNumber = $"KON-L-{ReturnID()}";
+        return serialNumber;
+    }
     public override void LoadLoad(string id)
     {
         foreach (var con in DB_Container)

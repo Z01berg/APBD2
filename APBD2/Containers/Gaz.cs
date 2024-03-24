@@ -2,11 +2,13 @@
 
 public class Gaz : Container, IHazardNotifier
 {
-    private double _pressure;
+    private double presure;
     
-    public Gaz(int weightLoad, int height, int weightShell, int depth, string serialNumber, int weightMax, double _pressure) : base(weightLoad, height, weightShell, depth, serialNumber, weightMax)
+    public Gaz(int weightLoad, int height, int weightShell, int depth, string serialNumber, int weightMax,
+        double? pressure) :
+        base(weightLoad, height, weightShell, depth, serialNumber, weightMax, pressure)
     {
-        this._pressure = _pressure;
+        this.presure = _pressure;
     }
     
     public void NotifyDangerousSituation(string containerNumber)
@@ -14,6 +16,12 @@ public class Gaz : Container, IHazardNotifier
         Console.WriteLine($"Notyfikacja: Kontener na gaz o numerze {containerNumber} znajduje się w niebezpiecznej sytuacji!");
     }
 
+    public override string CreateSerialNumber()
+    {
+        string serialNumber = $"KON-G-{ReturnID()}";
+        return serialNumber;
+    }
+    
     public override void LoadLoad(string id)
     {
         foreach (var con in DB_Container)
