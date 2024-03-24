@@ -4,9 +4,8 @@ public class Gaz : Container, IHazardNotifier
 {
     private double presure;
     
-    public Gaz(int weightLoad, int height, int weightShell, int depth, string serialNumber, int weightMax,
-        double? pressure) :
-        base(weightLoad, height, weightShell, depth, serialNumber, weightMax, pressure)
+    public Gaz(int weightLoad, int height, int weightShell, int depth, string serialNumber, int weightMax, double _pressure) :
+        base(weightLoad, height, weightShell, depth, serialNumber, weightMax)
     {
         this.presure = _pressure;
     }

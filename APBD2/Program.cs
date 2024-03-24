@@ -7,7 +7,7 @@ class Program
         // Stworzenie kontenera danego typu
         Container liquid = new Liquid(1250, 15, 150, 10, "5", 1500, true);
         Container gaz = new Gaz(5, 5, 5, 5, "5", 1500, 100);
-        Container cooler = new Cooler(5, 5, 5, 5, "5", 1200);
+        Container cooler = new Cooler(5, 5, 5, 5, "5", 1200, "", 5);
         
         Console.Write(_showListContainer());
         

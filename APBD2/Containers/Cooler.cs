@@ -4,7 +4,8 @@ public class Cooler : Container
 {
     private string productType;
     private double temperature;
-    public Cooler(int weightLoad, int height, int weightShell, int depth, string serialNumber, int weightMax) : base(weightLoad, height, weightShell, depth, serialNumber, weightMax)
+    public Cooler(int weightLoad, int height, int weightShell, int depth, string serialNumber, int weightMax, string _productType, double _temperature) :
+        base(weightLoad, height, weightShell, depth, serialNumber, weightMax)
     {
         this.productType = _productType;
         this.temperature = _temperature;

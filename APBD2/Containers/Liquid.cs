@@ -3,7 +3,7 @@
 class Liquid : Container, IHazardNotifier
 {
     public Liquid(int weightLoad, int height, int weightShell, int depth, string serialNumber, int weightMax,
-        bool? isHazardous) : base(weightLoad, height, weightShell, depth, serialNumber, weightMax, isHazardous)
+        bool? isHazardous) : base(weightLoad, height, weightShell, depth, serialNumber, weightMax)
     {
     }
     
