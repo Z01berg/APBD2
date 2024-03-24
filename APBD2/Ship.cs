@@ -2,6 +2,8 @@
 
 public class Ship
 {
+    public static List<Ship> DB_Ship = new List<Ship>();
+    
     private string _name;
     private int _speed;
     private int _maxContainerNum;
@@ -15,7 +17,7 @@ public class Ship
         this._maxContainerNum = maxContainerNum;
         this._maxWeight = maxWeight;
         
-        Program.DB_Ship.Add(this);
+        DB_Ship.Add(this);
     }
 
     public static void CreateExmple_Ship()
@@ -55,17 +57,17 @@ public class Ship
         int currentWeight = 0;
         string a = "";
 
-        if (Program.DB_Ship.Count == 0)
+        if (DB_Ship.Count == 0)
         {
             a += $"╚═════════╩═══════╩══════════════╩════════════╝\n\n";
         }
         else
         {
-            foreach (var ship in Program.DB_Ship)
+            foreach (var ship in DB_Ship)
             {
                 a += $"║ {ship._name} ║   {ship._speed}  ║   {currentContainerNumber} / {ship._maxContainerNum}  ║ {currentWeight} / {ship._maxWeight} ║\n";
             
-                if (Program.DB_Ship.IndexOf(ship) == Program.DB_Ship.Count - 1)
+                if (DB_Ship.IndexOf(ship) == DB_Ship.Count - 1)
                 {
                     a += $"╚═════════╩═══════╩══════════════╩════════════╝\n\n";
                 }

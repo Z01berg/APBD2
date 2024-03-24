@@ -2,10 +2,6 @@
 
 class Program
 {
-    /*Databases*/
-    public static List<Container> DB_Container = new List<Container>();
-    public static List<Ship> DB_Ship = new List<Ship>();
-    
     public static void Main(string[] args)
     {
         Ship.CreateExmple_Ship();
@@ -25,7 +21,7 @@ class Program
         return a;
     }
     
-    private static int _containerCount { get { return DB_Container.Count; } }
+    private static int _containerCount { get { return Container.DB_Container.Count; } }
     
     private static string _showListShip()
     {
@@ -38,7 +34,7 @@ class Program
         return a;
     }
     
-    private static int _shipCount { get { return DB_Ship.Count; } }
+    private static int _shipCount { get { return Ship.DB_Ship.Count; } }
 
     
 }

@@ -1,13 +1,17 @@
 ﻿namespace APBD2;
 
-class Container
+abstract public class Container
 {
-    private int _weightLoad; //in kg
-    private int _height; //in cm
-    private int _weightShell; //in kg
-    private int _depth; //in cm
-    private string _serialNumber = ReturnID();
-    private int _weightMax; //in kg
+    public static List<Container> DB_Container = new List<Container>();
+
+    public int _weightLoad { get; set; } //in kg
+    public int _height { get; set; } //in cm
+    public int _weightShell { get; set; } //in kg
+    public int _depth { get; set; } //in cm
+    public string _serialNumber = ReturnID();
+    public int _weightMax { get; set; } //in kg
+    public bool _isHazardous { get; set; } //check if liquid hazard
+    public double _pressure { get; set; } 
 
 
     public Container(int weightLoad, int height, int weightShell, int depth, string serialNumber, int weightMax)
@@ -18,7 +22,7 @@ class Container
         this._depth = depth;
         this._serialNumber = serialNumber;
         this._weightMax = weightMax;
-        Program.DB_Container.Add(this);
+        DB_Container.Add(this);
     }
 
     public static string CreateSerialNumber(char kind_C, string id)
@@ -56,7 +60,7 @@ class Container
 
     public static bool CheckFalseID(string id)
     {
-        foreach (var con in Program.DB_Container)
+        foreach (var con in DB_Container)
         {
             string check = con._serialNumber.Substring(5);
             if (check == id)
@@ -84,7 +88,7 @@ class Container
     /* Lodaout */
     public static void ClearLoad(string id)
     {
-        foreach (var con in Program.DB_Container)
+        foreach (var con in DB_Container)
         {
             if (con._serialNumber.Equals(id))
             {
@@ -93,9 +97,9 @@ class Container
         }
     }
 
-    public static void LoadLoad(string id)
+    public virtual void LoadLoad(string id)
     {
-        foreach (var con in Program.DB_Container)
+        foreach (var con in DB_Container)
         {
             if (con._serialNumber.Equals(id))
             {
@@ -112,17 +116,17 @@ class Container
     public static string DrawContainer()
     {
         string a = "";
-        if (Program.DB_Container.Count == 0)
+        if (DB_Container.Count == 0)
         {
             a += $"╚═════════════╩════════════╩══════════════╩═══════╩═══════════════╩════════╝\n\n";
         }
         else
         {
-            foreach (var container in Program.DB_Container)
+            foreach (var container in DB_Container)
             {
                 a += $"║ {container._serialNumber} ║   {container._weightMax}  ║   {container._weightShell}  ║ {container._depth} ║ {container._height} ║ {container._weightLoad} ║\n";
             
-                if (Program.DB_Container.IndexOf(container) == Program.DB_Container.Count - 1)
+                if (DB_Container.IndexOf(container) == DB_Container.Count - 1)
                 {
                     a += $"╚═════════════╩════════════╩══════════════╩═══════╩═══════════════╩════════╝\n\n";
                 }
